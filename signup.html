@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f8fb;
+            font-family: 'Arial', sans-serif;
+        }
+        /* Navbar */
+        .navbar-nav .nav-link:hover {
+            font-family: 'Georgia', serif;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        /* Active Page Styling */
+        .navbar-nav .nav-link.active {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        /* Dropdown Styling */
+        .navbar-nav .dropdown-menu a {
+            font-family: 'Verdana', sans-serif;
+            font-size: 15px;
+        }
+        .dropdown-menu {
+            background-color: white;
+        }
+        .dropdown-item {
+            color: black;
+        }
+        .dropdown-item:hover {
+            background-color: black;
+            color: white;
+        }
+        .nav-link.dropdown-toggle {
+            color: white;
+        }
+        .nav-link.dropdown-toggle:hover {
+            color: white;
+        }
+        /* Carousel */
+        .carousel-inner img {
+            height: 550px;
+            object-fit: cover;
+        }
+        /* Auth Container */
+        .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .auth-container h1 {
+            text-align: center;
+            color: #003366;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .auth-form label {
+            color: #333;
+            font-weight: bold;
+        }
+        .auth-form input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #99ccff;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .auth-form button {
+            background-color: #006994;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .auth-form button:hover {
+            background-color: #004466;
+        }
+        .auth-switch {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .auth-switch a {
+            color: #006994;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .auth-switch a:hover {
+            color: #003366;
+        }
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #ffdd00;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #b3e5fc;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="clicniclogo.png" alt="Clinic Logo" width="200" height="90">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html" style="color: white;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html" style="color: white;">Service</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About Us
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="about.html?about-section=clinic-info">About our clinic</a>
+                            <a class="dropdown-item" href="about.html?about-section=our-doctor">Our doctor</a>
+                            <a class="dropdown-item" href="about.html?about-section=our-facilities">Our facilities</a>
+                            <a class="dropdown-item" href="about.html?about-section=awards">Awards & recognition</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html" style="color: white;">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="login.html" style="color:black;">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Carousel -->
+    <div id="carouselExample" class="carousel slide mt-3" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="dr10.jpg" class="d-block w-100" alt="Clinic Image">
+            </div>
+        </div>
+    </div>
+<div class="auth-container">
+    <h1>Sign Up</h1>
+    <form class="auth-form" id="signupForm" action="signup.php" method="POST">
+        <label for="signupUsername">Username</label>
+        <input type="text" id="signupUsername" name="username" required>
+
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" name="password" required>
+
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" name="email" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Priya's Clinic. All rights reserved.</p>
+    <p>Clinic Timing: Mon-Fri: 9 AM - 6 PM | Sat: 9 AM - 2 PM</p>
+    <p>Address: 123 Clinic St, City, State, ZIP</p>
+    <p>Follow us on social media:
+        <a href="https://www.facebook.com/yourclinic" target="_blank">Facebook</a> |
+        <a href="https://www.instagram.com/yourclinic" target="_blank">Instagram</a> |
+        <a href="https://twitter.com/yourclinic" target="_blank">Twitter</a>
+    </p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
