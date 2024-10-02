@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light background color */
+        }
+        /* General Navbar Styling */
+.navbar-nav .nav-link {
+    font-family: 'Arial', sans-serif; /* Standard font for nav links */
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.navbar-nav .nav-link:hover {
+    font-family: 'Georgia', serif; /* Change font on hover */
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* Active Page Styling (No Color, Just Font Change) */
+.navbar-nav .nav-link.active {
+    font-family: 'Courier New', monospace; /* Different font for active link */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Dropdown Styling */
+.navbar-nav .dropdown-menu a {
+    font-family: 'Verdana', sans-serif; /* Dropdown menu font */
+    font-size: 15px;
+}
+
+
+/* Change dropdown item hover background and text colors */
+.dropdown-menu {
+    background-color: white;
+}
+
+/* Change the dropdown text color to black */
+.dropdown-item {
+    color: black;
+}
+
+/* Change dropdown item hover background and text colors */
+.dropdown-item:hover {
+    background-color: black;  /* or any other color for hover */
+    color: white;  /* Keep text black on hover */
+}
+
+/* Change the dropdown toggle color to white */
+.nav-link.dropdown-toggle {
+    color: white; /* Make sure the toggle link is also white */
+}
+
+/* When the dropdown toggle is hovered, change the color */
+.nav-link.dropdown-toggle:hover {
+    color: white; /* or any other color you prefer for the hover effect */
+}
+
+.carousel-item img {
+    height: 550px; /* Adjust this height as needed */
+}
+
+
+        .service-card {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card img {
+            margin-bottom: 10px;
+        }
+
+        .service-card h5 {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: 'Verdana', sans-serif; /* Different font family for service titles */
+        }
+
+        .service-card p {
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif; /* Different font family for service descriptions */
+        }
+
+        .service-card button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .service-card button:hover {
+            background-color: #3e8e41;
+        }
+
+        .testimonials {
+            background-color: #e0f7fa; /* Light blue background */
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Georgia',; /* Different font family for testimonials title */
+        }
+
+        .testimonial {
+            font-style: italic;
+            margin: 15px 0;
+            font-family: 'Times New Roman'; /* Different font family for testimonials */
+        }
+
+        .about-us {
+            background-color: #f9f9f9; /* Light grey background */
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .about-us h2 {
+            font-family: 'Helvetica Neue', sans-serif; /* Different font family for About Us title */
+            margin-bottom: 20px;
+        }
+        #bookingForm {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #003366; /* Dark blue footer */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: #99ccff; /* Light blue for links in footer */
+        }
+    </style>
+    <script>
+        function checkLogin(serviceName) {
+            // Simulate a login check; replace this with actual login check logic
+            const isLoggedIn = true; // Replace with actual login check
+            
+            if (isLoggedIn) {
+                document.getElementById('bookingForm').style.display = 'block'; // Show booking form
+                document.getElementById('selectedService').value = serviceName; // Set the service name in the hidden field
+            } else {
+                alert('Please log in to book an appointment.'); // Show login alert
+                // Optionally redirect to login page
+                // window.location.href = 'login.html';
+            }
+        }
+
+        function submitBookingForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            const formData = new FormData(document.getElementById('appointmentForm'));
+
+            // Send data to book-appointment.php
+            fetch('book-appointment.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Handle the response from the server
+                if (data.includes('successfully')) {
+                    alert('Booking Appointment Successful!'); // Show success message
+                    document.getElementById('appointmentForm').reset(); // Reset the form
+                    document.getElementById('bookingForm').style.display = 'none'; // Hide the form after submission
+                } else {
+                    alert('Error: ' + data); // Show the error message returned by PHP
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while booking your appointment.');
+            });
+        }
+    </script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" style="background-color: #b3e5fc;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="clicniclogo.png" alt="Clinic Logo" width="200" height="90">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html" style="color: black;">Home</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a class="nav-link" href="service.html" style="color: white;">Service</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        About Us
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="about.html?about-section=clinic-info">About our clinic</a>
+                        <a class="dropdown-item" href="about.html?about-section=our-doctor">Our doctor</a>
+                        <a class="dropdown-item" href="about.html?about-section=our-facilities">Our facilities</a>
+                        <a class="dropdown-item" href="about.html?about-section=awards">Awards & recognition</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html" style="color: white;">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html" style="color: white;">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Carousel -->
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="dr36.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="dr2.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="dr27.jpeg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+<!-- Services Section -->
+<div id="servicesOverview" class="container mt-5"></div>
+    <h2>Our Pediatric Services</h2>
+    <div class="row">
+        <div class="col-md-4 service-card">
+            <img src="dr7.jpeg" alt="Service 1" style="width: 100px;">
+            <h5>Well-Baby Visits</h5>
+            <p>Regular check-ups for infants and toddlers to monitor growth and development.</p>
+            <p><strong>Availability:</strong> 
+                <select id="well-baby-visits-time">
+                    <option value="9:00 AM - 5:00 PM">9:00 AM - 5:00 PM</option>
+                    <option value="10:00 AM - 6:00 PM">10:00 AM - 6:00 PM</option>
+                    <option value="11:00 AM - 7:00 PM">11:00 AM - 7:00 PM</option>
+                </select>
+            </p>
+            <button class="btn btn-link" onclick="checkLogin()">Book Now</button>
+        </div>
+        <div class="col-md-4 service-card">
+            <img src="dr6.jpg" alt="Service 2" style="width: 100px;">
+            <h5>Vaccination Services</h5>
+            <p>Administering recommended vaccinations to protect against infectious diseases.</p>
+            <p><strong>Availability:</strong> 
+                <select id="vaccination-services-time">
+                    <option value="10:00 AM - 4:00 PM">10:00 AM - 4:00 PM</option>
+                    <option value="11:00 AM - 5:00 PM">11:00 AM - 5:00 PM</option>
+                    <option value="12:00 PM - 6:00 PM">12:00 PM - 6:00 PM</option>
+                </select>
+            </p>
+            <button class="btn btn-link" onclick="checkLogin()">Book Now</button>
+        </div>
+        <div class="col-md-4 service-card">
+            <img src="dr4 (2).jpg" alt="Service 3" style="width: 100px;">
+            <h5>Sick Visits</h5>
+            <p>Urgent care for children with acute illnesses or injuries.</p>
+            <p><strong>Availability:</strong> 
+                <select id="sick-visits-time">
+                    <option value="9:00 AM - 2:00 PM">9:00 AM - 2:00 PM</option>
+                    <option value="10:00 AM - 3:00 PM">10:00 AM - 3:00 PM</option>
+                    <option value="11:00 AM - 4:00 PM">11:00 AM - 4:00 PM</option>
+                </select>
+            </p>
+            <button class="btn btn-link" onclick="checkLogin()">Book Now</button>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="services.html" class="btn btn-primary">Add More Services</a>
+    </div>
+</div>
+ <!-- Booking Form -->
+ <div id="bookingForm">
+    <h4>Booking Appointment</h4>
+    <form id="appointmentForm" onsubmit="submitBookingForm(event)">
+        <input type="hidden" id="selectedService" name="service" value="">
+        
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" class="form-control" id="patientName" name="patientName" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="contactNumber">Contact Number:</label>
+            <input type="text" class="form-control" id="contactNumber" name="contactNumber" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="appointmentDate">Date:</label>
+            <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="appointmentTime">Time:</label>
+            <input type="time" class="form-control" id="appointmentTime" name="appointmentTime" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+    </form>
+</div>
+</div>
+
+
+<!-- About Us Section -->
+<div class="about-us">
+    <h2>About Us</h2>
+    <p>Welcome to Priya's Clinic! Our dedicated team, led by <strong>Dr. Priya Vora</strong>, is committed to providing comprehensive healthcare services for children. With the support of our caring nurses, we ensure a warm and friendly environment for your little ones.</p>
+    <p>Equipped with state-of-the-art technology, our clinic focuses on delivering the best possible care. We prioritize comfort and reassurance for both children and parents during every visit.</p>
+    <p>At Priya's Clinic, we offer a range of services, including routine check-ups, vaccinations, and sick visits. Your child's health is our top priority!</p>
+    <p>Come visit us and experience the compassionate care we provide at Priya's Clinic!</p>
+</div>
+
+
+<!-- Testimonials Section -->
+<div class="testimonials" style="text-align: center;">
+    <h2>What Our Patients Say</h2>
+    
+    <div class="testimonial">
+        <p>"Amazing experience! The staff was incredibly friendly. From the moment we walked in, we felt welcomed and cared for. The clinic was spotless, and I felt at ease the entire time. My child was seen promptly, and the care we received was exceptional."</p>
+        <p>- John D.</p>
+    </div>
+    
+    <div class="testimonial">
+        <p>"My daughter loves coming here. Dr. Priya always makes her feel comfortable and safe. The staff is wonderful and knows how to handle kids with such care and patience. We’ve been visiting for years and wouldn’t go anywhere else. It's such a relief to have a doctor who truly listens and cares."</p>
+        <p>- Emily R.</p>
+    </div>
+    
+    <div class="testimonial">
+        <p>"The service is always efficient, and the staff is very knowledgeable. Every visit reassures us that we are in good hands. The waiting area is clean and child-friendly, making it easy to keep the kids calm before their appointments. Dr. Priya always takes the time to explain everything, which gives us great peace of mind."</p>
+        <p>- Mark L.</p>
+    </div>
+    
+    <div class="testimonial">
+        <p>"Dr. Priya's clinic is top-notch! Appointments are always punctual, and the care we receive is exceptional. I always feel my child is well taken care of. The clinic is very modern, with a calming environment, which is important for both kids and parents. We have had nothing but positive experiences every time we visit."</p>
+        <p>- Sarah P.</p>
+    </div>
+    
+    <div class="testimonial">
+        <p>"We highly recommend this clinic. The staff is caring, attentive, and always ensures patient comfort. From booking the appointment to the follow-up calls, everything is seamless. It's a relief knowing our kids are getting the best care from such a dedicated team. We appreciate how the clinic prioritizes our time and health."</p>
+        <p>- Michael T.</p>
+    </div>
+    
+    <div class="testimonial">
+        <p>"A wonderful clinic with a truly professional and compassionate team. My kids feel at ease here, and that peace of mind is priceless to us. The clinic's focus on patient comfort and care sets it apart from other places we've been. We are so grateful to have Dr. Priya and her amazing team taking care of our family."</p>
+        <p>- Linda M.</p>
+    </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer>
+        <p>&copy; 2024 Priya's Clinic. All rights reserved.</p>
+        <p>Clinic Timing: Mon-Fri: 9 AM - 6 PM | Sat: 9 AM - 2 PM</p>
+        <p>Address: 123 Clinic St, City, State, ZIP</p>
+        <p>Follow us on social media: 
+            <a href="https://www.facebook.com/yourclinic" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com/yourclinic" target="_blank">Instagram</a> |
+            <a href="https://twitter.com/yourclinic" target="_blank">Twitter</a>
+        </p>
+</footer>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</html>
