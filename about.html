@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff; 
+            font-family: Arial, sans-serif;
+        }
+        .navbar-nav .nav-link {
+            font-family: 'Arial', sans-serif; 
+            font-size: 16px;
+            font-weight: normal;
+        }
+        .navbar-nav .nav-link:hover {
+            font-family: 'Georgia', serif; 
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link.active {
+            font-family: 'Courier New', monospace; 
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .navbar-nav .dropdown-menu a {
+            font-family: 'Verdana', sans-serif; 
+            font-size: 15px;
+        }
+       
+        .navbar {
+            background-color: #b3e5fc;
+        }
+        .carousel-inner img {
+            height: 550px; 
+        }
+        
+        #clinic-info, #our-doctor, #our-facilities, #awards {
+            padding: 20px;
+            background: #b2ebf2; 
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 2.5rem; 
+        }
+        h2 {
+            font-size: 2rem; 
+        }
+        p {
+            font-size: 1.2rem; /* Font size for paragraphs */
+        }
+        footer {
+            background-color: #003366; /* Dark blue footer */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: #99ccff; /* Light blue for links in footer */
+        }
+        .hidden {
+            display: none;
+        }
+        .facility-image, .doctor-image, .award-image {
+            width: 100%; /* Full width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Rounded corners */
+            margin-top: 10px; /* Space above images */
+        }
+        footer {
+            background-color: #003366; /* Dark blue footer */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: #99ccff; /* Light blue for links in footer */
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="clicniclogo.png" alt="Clinic Logo" width="200" height="90">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" style="color: white;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html" style="color: white;">Service</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About Us
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#" onclick="showSection('clinic-info');">About our clinic</a>
+                            <a class="dropdown-item" href="#" onclick="showSection('our-doctor');">Our doctor</a>
+                            <a class="dropdown-item" href="#" onclick="showSection('our-facilities');">Our facilities</a>
+                            <a class="dropdown-item" href="#" onclick="showSection('awards');">Awards & recognition</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html" style="color: white;">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" style="color: white;">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Sections -->
+    <div id="serviceCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="dr37.jpg" class="d-block w-100" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img src="dr38.jpg" class="d-block w-100" alt="Second slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#serviceCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#serviceCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+   
+
+    <div id="clinic-info" class="container mt-4 hidden">
+        <h1>About Our Clinic</h1>
+        <p>Priya's Clinic provides comprehensive pediatric care with a focus on each child's unique needs.</p>
+        <p>We are committed to fostering a nurturing environment that promotes health and well-being for every child.</p>
+        
+        <h2>Our Mission</h2>
+        <p>To deliver exceptional healthcare services that ensure the well-being and happiness of every child we serve. We aim to provide a safe and welcoming atmosphere where families feel valued and empowered to participate in their child's healthcare journey. Our team is dedicated to continuous improvement, ensuring that our medical practices and technologies remain at the forefront of pediatric care.</p>
+        
+        <h2>Our Vision</h2>
+        <p>To be the leading pediatric clinic recognized for excellence in healthcare and patient satisfaction. We envision a future where every child has access to high-quality healthcare, and we strive to be a trusted partner for families in our community. Through innovation, education, and advocacy, we aspire to improve children's health outcomes and contribute to the overall well-being of our society.</p>
+        
+        <h2>Our Values</h2>
+        <ul>
+            <li>Compassion: We care for our patients as if they were our own children.</li>
+            <li>Integrity: We maintain the highest standards of honesty and transparency.</li>
+            <li>Excellence: We strive for the best outcomes in all that we do.</li>
+            <li>Collaboration: We work together with families and healthcare providers to achieve optimal care.</li>
+            <li>Respect: We honor the individuality of each child and family, valuing their unique experiences and perspectives.</li>
+        </ul>
+    
+        <h2>Why Choose Us?</h2>
+        <p>At Priya's Clinic, we believe in personalized care tailored to the individual needs of each child. Our dedicated staff is here to ensure that every visit is a positive experience, and we prioritize open communication with parents and caregivers. We are committed to making each appointment as comfortable and informative as possible, empowering families with the knowledge they need to support their child's health.</p>
+    </div>
+    
+
+    <div id="our-doctor" class="container mt-4 hidden">
+        <h1>Our Doctor</h1>
+        <p>Dr. Priya Vora is a qualified child specialist with over 10 years of experience in pediatric healthcare. She is passionate about improving children's health and well-being, and her dedication to her patients is evident in her personalized care approach.</p>
+        <img src="dr35.jpeg" alt="Dr. Priya Vora" class="doctor-image" style="width: 150px; height: auto; border-radius: 50%;">
+        
+        <h2>Education</h2>
+        <p>MD in Pediatrics from Marwadi University, 2006</p>
+        <p>Dr. Vora has pursued extensive training in pediatric medicine, completing her residency at a leading children's hospital where she gained hands-on experience in various pediatric specialties, including neonatology, pediatric cardiology, and developmental-behavioral pediatrics.</p>
+        
+        <h2>Experience</h2>
+        <p>Dr. Vora has worked in various hospitals and clinics, providing care to children of all ages. Throughout her career, she has treated a wide range of conditions, from common illnesses to complex medical issues, ensuring that each child receives the highest quality of care.</p>
+        <p>In addition to her clinical practice, Dr. Vora has participated in community health programs, educating parents and caregivers on childhood health, nutrition, and preventive care.</p>
+        
+        <h2>Approach to Care</h2>
+        <p>Dr. Vora believes in a family-centered approach, ensuring that both children and parents are involved in the care process. She takes the time to listen to concerns, answer questions, and provide guidance to families, fostering an environment of trust and collaboration.</p>
+        <p>Her practice emphasizes preventive care, early intervention, and the importance of routine check-ups, vaccinations, and developmental screenings to promote healthy growth and development. Dr. Vora also stays current with the latest advancements in pediatric medicine to provide her patients with the best possible care.</p>
+    </div>
+    
+    
+    <div id="our-facilities" class="container mt-4 hidden">
+        <h1>Our Facilities</h1>
+        <p>We offer state-of-the-art facilities to ensure the best care for your child:</p>
+        
+        <div class="row">
+            <div class="facility-card card col-md-4">
+                <img src="dr8.jpeg" alt="Waiting Room" class="facility-image">
+                <div class="card-body">
+                    <h2 class="card-title">Waiting Room</h2>
+                    <p class="card-text">Our waiting room is designed to provide a comfortable and welcoming environment for patients and their families, complete with books and games to keep children entertained.</p>
+                </div>
+            </div>
+    
+            <div class="facility-card card col-md-4">
+                <img src="images (3).jpeg" alt="Reception" class="facility-image">
+                <div class="card-body">
+                    <h2 class="card-title">Reception</h2>
+                    <p class="card-text">The reception area is staffed with friendly professionals ready to assist you with your needs and provide information about our services.</p>
+                </div>
+            </div>
+    
+            <div class="facility-card card col-md-4">
+                <img src="dr9.jpeg" alt="Playing Area" class="facility-image">
+                <div class="card-body">
+                    <h2 class="card-title">Playing Area</h2>
+                    <p class="card-text">Our dedicated playing area ensures that children can relax and have fun while they wait for their appointment, featuring toys and games suited for all ages.</p>
+                </div>
+            </div>
+    
+            <div class="facility-card card col-md-4">
+                <img src="Consultation.jpeg" alt="Consultation Rooms" class="facility-image">
+                <div class="card-body">
+                    <h2 class="card-title">Consultation Rooms</h2>
+                    <p class="card-text">Comfortable and child-friendly consultation rooms designed to make visits stress-free, equipped with colorful decor and engaging activities.</p>
+                </div>
+            </div>
+    
+            <div class="facility-card card col-md-4">
+                <img src="dr26.jpg" alt="Diagnostic Services" class="facility-image">
+                <div class="card-body">
+                    <h2 class="card-title">Diagnostic Services</h2>
+                    <p class="card-text">We provide comprehensive diagnostic services, including lab tests and imaging, to ensure accurate assessments and timely treatment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="awards" class="container mt-4 hidden">
+        <h1>Awards and Recognition</h1>
+        <p>Dr. Priya Vora has received several accolades for her outstanding contributions to pediatric care:</p>
+    
+        <div class="row">
+            <div class="award-card card col-md-4">
+                <img src="dr30.jpg" alt="Award for Excellence" class="award-image">
+                <div class="card-body">
+                    <h2 class="card-title">Award for Excellence in Pediatrics</h2>
+                    <p class="card-text">Recognized by the National Pediatric Association for exemplary service in child healthcare, showcasing a commitment to quality care.</p>
+                </div>
+            </div>
+    
+            <div class="award-card card col-md-4">
+                <img src="dr34.png" alt="Community Service Award" class="award-image">
+                <div class="card-body">
+                    <h2 class="card-title">Community Service Award</h2>
+                    <p class="card-text">Honored for commitment to improving child health in the community, actively participating in local health initiatives and programs.</p>
+                </div>
+            </div>
+    
+            <div class="award-card card col-md-4">
+                <img src="dr35.jpeg" alt="Top Pediatrician of the Year" class="award-image">
+                <div class="card-body">
+                    <h2 class="card-title">Top Pediatrician of the Year</h2>
+                    <p class="card-text">Awarded by the Child Health Foundation for exceptional performance, demonstrating leadership in pediatric care and advocacy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <script>
+        // Function to get query parameter from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+    
+        // Function to show the correct section based on the URL query parameter
+        function showSectionFromURL() {
+            const section = getQueryParam('about-section');
+            if (section) {
+                showSection(section); // Call the showSection function to display the correct section
+            }
+        }
+    
+        // Function to show a specific section and hide the rest
+        function showSection(sectionId) {
+            document.querySelectorAll('.container').forEach(function (section) {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+    
+        // Call the function on page load to display the correct section
+        document.addEventListener('DOMContentLoaded', function () {
+            showSectionFromURL(); // Show the section based on the URL
+        });
+    </script>
+    <footer>
+    <p>&copy; 2024 Priya's Clinic. All rights reserved.</p>
+    <p>Clinic Timing: Mon-Fri: 9 AM - 6 PM | Sat: 9 AM - 2 PM</p>
+    <p>Address: 123 Clinic St, City, State, ZIP</p>
+    <p>Follow us on social media: 
+        <a href="https://www.facebook.com/yourclinic" target="_blank">Facebook</a> |
+        <a href="https://www.instagram.com/yourclinic" target="_blank">Instagram</a> |
+        <a href="https://twitter.com/yourclinic" target="_blank">Twitter</a>
+    </p>
+</footer>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
